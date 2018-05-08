@@ -1,39 +1,24 @@
 <resources>
-    <string name="app_name">Radio Popular Livre - RPfm</string>
+    <string name="app_name">Radio Popular Livre - RP</string>
+    <string name="titulo_activity_login">Login</string>
+    <string name="titulo_activity_cadastro">Cadastre-se</string>
+    <string name="app_name_contato">Contatos</string>
     <string name="tab_aovivo">AO VIVO</string>
     <string name="tab_comentarios">COMENTARIOS</string>
-    <string name="tab_contato">CONTATO</string>
-    <string name="action_sobre">Sobre</string>
     <string name="action_compartilhar">Compartilhar</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="descricao">É um fato conhecido de todos que um leitor se
-        distrairá com o conteúdo de texto legível de uma página quando estiver
-        examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem
-        uma distribuição normal de letras, ao contrário de &quot;Conteúdo aqui,
-        conteúdo aqui&quot;, fazendo com que ele tenha uma aparência similar a
-        de um texto legível. Muitos softwares de publicação e editores de páginas
-        na internet agora usam Lorem Ipsum como texto-modelo padrão, e uma rápida
-        busca por &apos;lorem ipsum&apos; mostra vários websites ainda em sua fase
-        de construção. Várias versões novas surgiram ao longo dos anos, eventualmente
-        por acidente, e às vezes de propósito (injetando humor, e coisas do gênero).
-        É um fato conhecido de todos que um leitor se distrairá com o conteúdo de
-        texto legível de uma página quando estiver examinando sua diagramação.
-        A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de letras,
-        ao contrário de &quot;Conteúdo aqui, conteúdo aqui&quot;, fazendo com que ele
-        tenha uma aparência similar a de um texto legível. Muitos softwares de publicação
-        e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo padrão,
-        e uma rápida busca por ;lorem ipsum&apos; mostra vários websites ainda em sua
-        fase de construção. Várias versões novas surgiram ao longo dos anos, eventualmente
-        por acidente, e às vezes de propósito (injetando humor, e coisas do gênero).
-    </string>
+    <string name="action_sobre">Sobre</string>
+    <string name="item_sair">Sair</string>
+    <string name="item_logar">Logar</string>
+    <string name="btn_cadastrar">Cadastrar</string>
     <string name="textTelefone">Ligar</string>
     <string name="textWhats">Enviar Mensagem</string>
     <string name="textFace">Acessar Perfil</string>
     <string name="textSite">Acessar Site</string>
+    <string name="botao_logar">Logar</string>
+    <string name="texto_cadastre">Não tem conta? Cadastre-se</string>
 
     <integer name="Frag_AoVivo">1</integer>
     <integer name="Frag_Comentarios">2</integer>
-    <integer name="Frag_Contato">3</integer>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment: %1$d</string>

@@ -1,11 +1,13 @@
-package rpfm.projetoandroid.com.radiopopularlivre_rpfm;
+package rpfm.projetoandroid.com.radiopopularlivre_rpfm.fragmentos;
 
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -17,6 +19,9 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import java.io.IOException;
+
+import rpfm.projetoandroid.com.radiopopularlivre_rpfm.R;
+import rpfm.projetoandroid.com.radiopopularlivre_rpfm.activity.Contato;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +37,20 @@ public class Frag1_AoVivo extends Fragment {
     private MediaPlayer mediaPlayer;
     private ProgressDialog progressDialog;
     NotificationCompat.Builder builder;
+   /*
+    private int page;
+    public static Frag1_AoVivo newInstance(int page) {
+        Frag1_AoVivo frag1_AoVivo = new Frag1_AoVivo();
+        Bundle args = new Bundle();
+        args.putInt("someInt", page);
+        frag1_AoVivo.setArguments(args);
+        return frag1_AoVivo;
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        page = getArguments().getInt("someInt", 0);
+    } */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +66,16 @@ public class Frag1_AoVivo extends Fragment {
         btnTocar = rootView.findViewById(R.id.btnPlayPauseId);
         btnTocar.setImageResource(R.drawable.play);
         controleVolume();
+
+        FloatingActionButton fab = rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Contato.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
     }
 
@@ -156,12 +185,12 @@ public class Frag1_AoVivo extends Fragment {
                 progressDialog.dismiss();
                     //*** set a imagem do botão para player
                 btnTocar.setImageResource(R.drawable.play);
-                    //*** Para a execução
-                mediaPlayer.stop();
                     //*** Reseta a execução
                 mediaPlayer.reset();
+                    //*** Para a execução
+                mediaPlayer.stop();
                     //*** Exibe mensagem para usuário
-                Toast.makeText(getContext(), "Sem conexão com internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Transmissão encerrada, sem conexão com internet", Toast.LENGTH_LONG).show();
             }
         });
     }

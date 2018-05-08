@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,8 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity$PlaceholderFragment"
-    android:background="#e5e6ea">
+    tools:context=".activity.Contato"
+    android:background="@color/color_fundo">
 
     <ScrollView
         android:layout_width="420dp"
@@ -16,13 +17,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
         android:background="#ffffff" >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:id="@+id/btnTelefoneId"
-            android:onClick="abrirChamadas"
             android:background="@drawable/telefone"
             android:layout_marginTop="20dp"
             android:layout_marginStart="30dp" />
@@ -48,7 +49,7 @@
         android:layout_below="@+id/scrollView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="25dp"
         android:background="#ffffff" >
 
         <ImageView
@@ -75,7 +76,7 @@
         android:layout_width="420dp"
         android:layout_height="90dp"
         android:id="@+id/scrollView3"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="25dp"
         android:background="#ffffff"
         android:layout_below="@+id/scrollView2"
         android:layout_alignParentLeft="true"
@@ -108,7 +109,7 @@
         android:layout_below="@+id/scrollView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="25dp"
         android:background="#ffffff" >
 
         <ImageView

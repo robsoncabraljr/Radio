@@ -18,6 +18,28 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="0" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="foregroundClipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
@@ -34,14 +56,27 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundImage" value="C:\Users\SO\Documents\Radio\app\src\main\res\drawable-v24\ic_launcher_foreground.xml" />
-                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
+                                      <entry key="backgroundImage" value="C:\Users\SO\Documents\Radio\app\src\main\res\drawable\logo_icon_apk.png" />
                                       <entry key="foregroundImage" value="C:\Users\SO\Documents\Radio\app\src\main\res\drawable\logo_icon_apk.png" />
-                                      <entry key="foregroundLayerName" value="ic_launcher_foreground" />
                                       <entry key="legacyIconShape" value="NONE" />
                                       <entry key="outputName" value="ic_launcher_apk" />
                                       <entry key="previewDensity" value="MEDIUM" />
                                       <entry key="webIconShape" value="NONE" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="launcherLegacy">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="cropped" value="true" />
+                                      <entry key="iconShape" value="NONE" />
+                                      <entry key="imageAsset" value="C:\Users\SO\Documents\Radio\app\src\main\res\drawable\logo_icon_apk.png" />
+                                      <entry key="outputName" value="ic_launcher_ap" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -60,11 +95,6 @@
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="NOTIFICATION" />
                           </map>
                         </option>
                       </PersistentState>

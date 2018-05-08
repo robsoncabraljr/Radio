@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="rpfm.projetoandroid.com.radiopopularlivre_rpfm.MainActivity">
+    tools:context="rpfm.projetoandroid.com.radiopopularlivre_rpfm.activity.MainActivity">
     <item
         android:id="@+id/action_compartilhar"
         android:orderInCategory="100"
@@ -10,7 +10,19 @@
         android:actionProviderClass="android.widget.ShareActionProvider" />
     <item
         android:id="@+id/action_sobre"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         android:title="@string/action_sobre"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_sair"
+        android:orderInCategory="300"
+        android:title="@string/item_sair"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/item_logar"
+        android:title="@string/item_logar"
+        android:orderInCategory="400"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_input"/>
 </menu>
