@@ -5,8 +5,8 @@
     <string name="app_name_contato">Contatos</string>
     <string name="tab_aovivo">AO VIVO</string>
     <string name="tab_comentarios">COMENTARIOS</string>
-    <string name="action_compartilhar">Compartilhar</string>
-    <string name="action_sobre">Sobre</string>
+    <string name="item_compartilhar">Compartilhar</string>
+    <string name="item_sobre">Sobre</string>
     <string name="item_sair">Sair</string>
     <string name="item_logar">Logar</string>
     <string name="btn_cadastrar">Cadastrar</string>
@@ -21,5 +21,6 @@
     <integer name="Frag_Comentarios">2</integer>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="section_format">Hello World from section: %1$d</string>
     <string name="hello_blank_fragment">Hello blank fragment: %1$d</string>
 </resources>

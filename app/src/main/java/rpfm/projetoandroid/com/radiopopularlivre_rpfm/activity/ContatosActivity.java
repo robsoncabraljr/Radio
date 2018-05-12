@@ -13,7 +13,7 @@ import java.util.List;
 
 import rpfm.projetoandroid.com.radiopopularlivre_rpfm.R;
 
-public class Contato extends AppCompatActivity implements View.OnClickListener {
+public class ContatosActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView btnTelefone;
     private ImageView btnWhatsapp;

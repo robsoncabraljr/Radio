@@ -1,4 +1,4 @@
-package rpfm.projetoandroid.com.radiopopularlivre_rpfm.fragmentos;
+package rpfm.projetoandroid.com.radiopopularlivre_rpfm.fragment;
 
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 import java.io.IOException;
 
 import rpfm.projetoandroid.com.radiopopularlivre_rpfm.R;
-import rpfm.projetoandroid.com.radiopopularlivre_rpfm.activity.Contato;
+import rpfm.projetoandroid.com.radiopopularlivre_rpfm.activity.ContatosActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,6 +51,9 @@ public class Frag1_AoVivo extends Fragment {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("someInt", 0);
     } */
+   public Frag1_AoVivo() {
+       // Required empty public constructor
+   }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,11 +70,11 @@ public class Frag1_AoVivo extends Fragment {
         btnTocar.setImageResource(R.drawable.play);
         controleVolume();
 
-        FloatingActionButton fab = rootView.findViewById(R.id.fab);
+        FloatingActionButton fab = rootView.findViewById(R.id.fab_aovivo);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Contato.class);
+                Intent intent = new Intent(getContext(), ContatosActivity.class);
                 startActivity(intent);
             }
         });

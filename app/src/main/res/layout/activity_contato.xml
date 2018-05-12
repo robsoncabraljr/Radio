@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.Contato"
+    tools:context=".activity.ContatosActivity"
     android:background="@color/color_fundo">
 
     <ScrollView
@@ -18,14 +18,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
-        android:background="#ffffff" >
+        android:background="@drawable/arredondamento_bordas" >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:id="@+id/btnTelefoneId"
             android:background="@drawable/telefone"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="13dp"
             android:layout_marginStart="30dp" />
     </ScrollView>
 
@@ -50,14 +50,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="25dp"
-        android:background="#ffffff" >
+        android:background="@drawable/arredondamento_bordas" >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:id="@+id/btnWhatsappId"
             android:background="@drawable/whatsapp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="13dp"
             android:layout_marginStart="30dp" />
     </ScrollView>
 
@@ -77,7 +77,7 @@
         android:layout_height="90dp"
         android:id="@+id/scrollView3"
         android:layout_marginTop="25dp"
-        android:background="#ffffff"
+        android:background="@drawable/arredondamento_bordas"
         android:layout_below="@+id/scrollView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" >
@@ -87,7 +87,7 @@
             android:layout_height="40dp"
             android:id="@+id/btnFacebookId"
             android:background="@drawable/facebook"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="13dp"
             android:layout_marginStart="30dp" />
     </ScrollView>
 
@@ -110,14 +110,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="25dp"
-        android:background="#ffffff" >
+        android:background="@drawable/arredondamento_bordas" >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:id="@+id/btnSiteId"
             android:background="@drawable/site"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="13dp"
             android:layout_marginStart="30dp" />
     </ScrollView>
 
