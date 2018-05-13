@@ -37,8 +37,8 @@ public class Frag1_AoVivo extends Fragment {
     private MediaPlayer mediaPlayer;
     private ProgressDialog progressDialog;
     NotificationCompat.Builder builder;
-   /*
-    private int page;
+
+    /*private int page;
     public static Frag1_AoVivo newInstance(int page) {
         Frag1_AoVivo frag1_AoVivo = new Frag1_AoVivo();
         Bundle args = new Bundle();
@@ -46,11 +46,13 @@ public class Frag1_AoVivo extends Fragment {
         frag1_AoVivo.setArguments(args);
         return frag1_AoVivo;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("someInt", 0);
-    } */
+    }*/
+
    public Frag1_AoVivo() {
        // Required empty public constructor
    }
@@ -203,7 +205,7 @@ public class Frag1_AoVivo extends Fragment {
         progressDialog = ProgressDialog.show(getContext(), "Por favor, Aguarde ...",
                 "Carregando Streaming...");
             //*** Impede que o diálogo seja cancelado pressionando a tecla Voltar
-        //progressDialog.setCancelable(true);
+        progressDialog.setCancelable(true);
             //*** Altera a imagem do botão do player
         Glide.with(getActivity()).load(R.drawable.carregando).asGif().into(btnTocar);
     }

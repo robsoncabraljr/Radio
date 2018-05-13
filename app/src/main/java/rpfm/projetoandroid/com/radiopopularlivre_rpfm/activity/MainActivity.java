@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
     }
 
     @Override
@@ -78,13 +77,6 @@ public class MainActivity extends AppCompatActivity {
             deslogarOuvinte();
             return true;
         }
-        if (id == R.id.item_logar) {
-            //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-           // startActivity(intent);
-            //startActivity(new Intent(getApplicationContext(), Login.class));
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -114,47 +106,10 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
-
     public class AbaAdapter extends FragmentStatePagerAdapter {
-
         private AbaAdapter(FragmentManager fm) {
             super(fm);
         }
-
         @Override
         public Fragment getItem(int position) {
             Log.e("igr", "getItem: " + position );
@@ -168,21 +123,15 @@ public class MainActivity extends AppCompatActivity {
                     //return Frag2_Comentarios.newInstance(1);
                     fragment = new Frag2_Comentarios();
                     break;
-               /* case 2:
-                    //return Frag3_Contato.newInstance(2);
-                    fragment = new Frag3_Contato();
-                    break; */
                 default:
             }
             return fragment;
         }
-
         @Override
         public int getCount() {
             // numero total abas.
             return nomeAbas.length;
         }
-
         @Override
         public CharSequence getPageTitle(int position) {
             return nomeAbas[position];

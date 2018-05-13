@@ -19,10 +19,4 @@
         android:orderInCategory="300"
         android:title="@string/item_sair"
         app:showAsAction="never" />
-
-    <item android:id="@+id/item_logar"
-        android:title="@string/item_logar"
-        android:orderInCategory="400"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_input"/>
 </menu>

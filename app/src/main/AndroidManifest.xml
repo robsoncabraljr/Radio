@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.TelaSplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -21,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/titulo_activity_cadastro"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/titulo_activity_login"
@@ -34,7 +38,7 @@
             android:name=".activity.ContatosActivity"
             android:label="@string/app_name_contato"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.SobreActivity"></activity>
+        <activity android:name=".activity.SobreActivity" />
     </application>
 
 </manifest>
