@@ -15,6 +15,7 @@
     <string name="textFace">Acessar Perfil</string>
     <string name="textSite">Acessar Site</string>
     <string name="botao_logar">Logar</string>
+    <string name="recuperar_senha">Esqueci a senha</string>
     <string name="texto_cadastre">Não tem conta? Cadastre-se</string>
 
     <integer name="Frag_AoVivo">1</integer>

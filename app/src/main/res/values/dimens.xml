@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">12dp</dimen>
     <dimen name="activity_vertical_margin">10dp</dimen>
     <dimen name="appbar_padding_top">0dp</dimen>
-    <dimen name="largura_logo_login">220dp</dimen>
+    <dimen name="largura_logo_login">180dp</dimen>
     <dimen name="altura_logo_login">200dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 </resources>
