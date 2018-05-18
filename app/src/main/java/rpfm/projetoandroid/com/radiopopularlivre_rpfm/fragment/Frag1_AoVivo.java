@@ -196,6 +196,7 @@ public class Frag1_AoVivo extends Fragment {
                 mediaPlayer.stop();
                     //*** Exibe mensagem para usuário
                 Toast.makeText(getContext(), "Transmissão encerrada, sem conexão com internet", Toast.LENGTH_LONG).show();
+                stop();
             }
         });
     }
@@ -227,6 +228,23 @@ public class Frag1_AoVivo extends Fragment {
                 btnTocar.setImageResource(R.drawable.stop);
             }
         });
+    }
+
+    private void stop() {
+        if(mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(mediaPlayer != null) {
+            if(estadoInicial) {
+                mediaPlayer.start();
+            }
+        }
     }
 
     @Override

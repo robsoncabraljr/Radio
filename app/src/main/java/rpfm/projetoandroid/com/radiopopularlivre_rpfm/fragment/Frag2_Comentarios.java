@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,10 +39,11 @@ public class Frag2_Comentarios extends Fragment {
     private DatabaseReference database;
     private ValueEventListener valueEventListenerComentarios;
     private Random randomico = new Random();
-    private SimpleDateFormat dateFormat;
+    private SimpleDateFormat dateFormat, data_format_ordem;
     private Date data, data_atual;
     private Calendar cal;
-    private String data_completa;
+    private String data_completa, data_ordem_id;
+    private Query query;
 
     /*private int page;
     public static Frag2_Comentarios newInstance(int page) {
@@ -65,7 +67,7 @@ public class Frag2_Comentarios extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        database.addValueEventListener( valueEventListenerComentarios );
+        query.addValueEventListener( valueEventListenerComentarios );
         Log.i("ValueEventListener", "onStart");
     }
 
@@ -78,7 +80,7 @@ public class Frag2_Comentarios extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                publicarComentario();
+                postarComentario();
             }
         });
 
@@ -88,6 +90,8 @@ public class Frag2_Comentarios extends Fragment {
         listView.setAdapter(arrayAdapter);
 
         database = ConfiguracaoFirebase.getDatabase().child("comentarios");
+        query = database.orderByChild("idComentario");
+
             //Listener para recuperar os comentarios
         valueEventListenerComentarios = new ValueEventListener() {
             @Override
@@ -108,7 +112,7 @@ public class Frag2_Comentarios extends Fragment {
         return rootView;
     }
 
-    private void publicarComentario() {
+    private void postarComentario() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
             //Configuração do dialog
         alertDialog.setTitle("Nova Publicação");
@@ -122,7 +126,6 @@ public class Frag2_Comentarios extends Fragment {
         alertDialog.setPositiveButton("Postar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                final String nummeroRandomico = Integer.toString(randomico.nextInt(99999999 - 10000000) + 10000000);
                 final String descricaoComentario = editText.getText().toString();
                     // Valida se foi preenchido o editText comentário
                 if(descricaoComentario.isEmpty()) {
@@ -130,19 +133,22 @@ public class Frag2_Comentarios extends Fragment {
                 } else {
                         //Recuperar identificador usuario logado (base64)
                     Preferencias preferencias = new Preferencias(getActivity());
-                    String identificadorOuvinteLogado = preferencias.getIdentificador();
+                    final String identificadorOuvinteLogado = preferencias.getIdentificador();
 
                         // Gera o id para cada comentário
-                    final String identifidadorComentario = identificadorOuvinteLogado + "=id=" + nummeroRandomico;
+                    //final String identifidadorComentario = identificadorOuvinteLogado + "=" + data_ordem_id;
 
                         // Formata a data para exibição
                     dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+                        // Criar ordem decrescente para exibir na lista
+                    data_format_ordem = new SimpleDateFormat("yyyyMMddHHmmss");
                         // Pega a data e hora atual do sistema
                     data = new Date();
                     cal = Calendar.getInstance();
                     cal.setTime(data);
                     data_atual = cal.getTime();
                     data_completa = dateFormat.format(data_atual);
+                    data_ordem_id = data_format_ordem.format(data_atual);
 
                         //Recuperar instância Firebase
                     database = ConfiguracaoFirebase.getDatabase().child("ouvintes").child(identificadorOuvinteLogado);
@@ -155,9 +161,10 @@ public class Frag2_Comentarios extends Fragment {
 
                                 database = ConfiguracaoFirebase.getDatabase();
                                 database = database.child("comentarios")
-                                        .child(identifidadorComentario);
+                                        .child(data_ordem_id);
 
                                 Comentario comentario = new Comentario();
+                                comentario.setIdComentario(identificadorOuvinteLogado);
                                 comentario.setNome(nomeOuvinte.getNome());
                                 comentario.setData(data_completa);
                                 comentario.setDescricao(descricaoComentario);
@@ -186,7 +193,7 @@ public class Frag2_Comentarios extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        database.removeEventListener( valueEventListenerComentarios );
+        query.removeEventListener( valueEventListenerComentarios );
         Log.i("ValueEventListener", "onStop");
     }
 }

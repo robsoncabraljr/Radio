@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,15 +16,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="415dp"
-        android:layout_gravity="end|bottom"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
         app:srcCompat="@drawable/commenttext"
-        android:layout_alignParentEnd="true"
-        tools:ignore="RelativeOverlap" />
+        tools:ignore="RelativeOverlap,RtlHardcoded" />
 
     <ListView
         android:id="@+id/lista_comentarios"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"/>
-</RelativeLayout>
+        android:divider="@color/color_fundo"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginBottom="50dp"/>
+
+</FrameLayout>
