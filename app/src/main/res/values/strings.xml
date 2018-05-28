@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Radio Popular Livre - RP</string>
-    <string name="titulo_activity_login">Login</string>
+    <string name="titulo_activity_login">Entrar</string>
     <string name="titulo_activity_cadastro">Cadastre-se</string>
     <string name="app_name_contato">Contatos</string>
     <string name="tab_aovivo">AO VIVO</string>
@@ -14,7 +14,7 @@
     <string name="textWhats">Enviar Mensagem</string>
     <string name="textFace">Acessar Perfil</string>
     <string name="textSite">Acessar Site</string>
-    <string name="botao_logar">Logar</string>
+    <string name="botao_logar">Entrar</string>
     <string name="recuperar_senha">Esqueci a senha</string>
     <string name="texto_cadastre">Não tem conta? Cadastre-se</string>
 

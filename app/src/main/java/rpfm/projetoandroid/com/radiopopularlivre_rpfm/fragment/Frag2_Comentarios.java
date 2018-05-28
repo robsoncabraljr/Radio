@@ -1,35 +1,23 @@
 package rpfm.projetoandroid.com.radiopopularlivre_rpfm.fragment;
 
-import android.content.DialogInterface;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Random;
 import rpfm.projetoandroid.com.radiopopularlivre_rpfm.R;
 import rpfm.projetoandroid.com.radiopopularlivre_rpfm.adapter.ComentarioAdapter;
 import rpfm.projetoandroid.com.radiopopularlivre_rpfm.config.ConfiguracaoFirebase;
-import rpfm.projetoandroid.com.radiopopularlivre_rpfm.helper.Preferencias;
 import rpfm.projetoandroid.com.radiopopularlivre_rpfm.model.Comentario;
-import rpfm.projetoandroid.com.radiopopularlivre_rpfm.model.Ouvinte;
 
 public class Frag2_Comentarios extends Fragment {
 
@@ -38,12 +26,7 @@ public class Frag2_Comentarios extends Fragment {
     private ArrayList<Comentario> listaComentarios;
     private DatabaseReference database;
     private ValueEventListener valueEventListenerComentarios;
-    private Random randomico = new Random();
-    private SimpleDateFormat dateFormat, data_format_ordem;
-    private Date data, data_atual;
-    private Calendar cal;
-    private String data_completa, data_ordem_id;
-    private Query query;
+    //private Query query;
 
     /*private int page;
     public static Frag2_Comentarios newInstance(int page) {
@@ -67,7 +50,7 @@ public class Frag2_Comentarios extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        query.addValueEventListener( valueEventListenerComentarios );
+        database.addValueEventListener( valueEventListenerComentarios );
         Log.i("ValueEventListener", "onStart");
     }
 
@@ -76,21 +59,13 @@ public class Frag2_Comentarios extends Fragment {
                              Bundle savedInstanceState) {
         View rootView  = inflater.inflate(R.layout.tab_comentarios, container, false);
 
-        FloatingActionButton fab = rootView.findViewById(R.id.fab_comentarios);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                postarComentario();
-            }
-        });
-
         listaComentarios = new ArrayList<>();
         listView = rootView.findViewById(R.id.lista_comentarios);
         arrayAdapter = new ComentarioAdapter(getActivity(), listaComentarios);
         listView.setAdapter(arrayAdapter);
 
         database = ConfiguracaoFirebase.getDatabase().child("comentarios");
-        query = database.orderByChild("idComentario");
+        //query = database.orderByChild("id");
 
             //Listener para recuperar os comentarios
         valueEventListenerComentarios = new ValueEventListener() {
@@ -112,6 +87,7 @@ public class Frag2_Comentarios extends Fragment {
         return rootView;
     }
 
+    /*
     private void postarComentario() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
             //Configuração do dialog
@@ -190,10 +166,12 @@ public class Frag2_Comentarios extends Fragment {
         alertDialog.create();
         alertDialog.show();
     }
+    */
+
     @Override
     public void onStop() {
         super.onStop();
-        query.removeEventListener( valueEventListenerComentarios );
+        database.removeEventListener( valueEventListenerComentarios );
         Log.i("ValueEventListener", "onStop");
     }
 }

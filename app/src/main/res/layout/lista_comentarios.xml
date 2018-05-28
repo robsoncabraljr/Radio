@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/arredondamento_bordas"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_nome"
+        android:text="Robson Cabral"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:paddingBottom="0dp"
+        android:paddingTop="10dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp" />
+
+    <TextView
+        android:id="@+id/tv_data"
+        android:text="22/04/2018 - 12:40"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="10sp"
+        android:paddingBottom="5dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="5dp" />
+
+    <TextView
+        android:id="@+id/tv_comentario"
+        android:text="Aqui o comentario"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:paddingBottom="15dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="15dp" />
+</LinearLayout>

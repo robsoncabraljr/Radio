@@ -1,14 +1,23 @@
 package rpfm.projetoandroid.com.radiopopularlivre_rpfm.fragment;
 
+import android.annotation.TargetApi;
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,9 +28,12 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import java.io.IOException;
+import java.util.Objects;
 
 import rpfm.projetoandroid.com.radiopopularlivre_rpfm.R;
 import rpfm.projetoandroid.com.radiopopularlivre_rpfm.activity.ContatosActivity;
+import rpfm.projetoandroid.com.radiopopularlivre_rpfm.activity.MainActivity;
+import rpfm.projetoandroid.com.radiopopularlivre_rpfm.service.MediaPlayerService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,12 +43,12 @@ public class Frag1_AoVivo extends Fragment {
     private SeekBar volumeSeekbar = null;
     private AudioManager audioManager = null;
     private Boolean estadoInicial = false;
-    private Boolean estadoImg = true;
+    private Boolean estadoImg = false;
     private Boolean verificar = false;
     private ImageView btnTocar;
     private MediaPlayer mediaPlayer;
-    private ProgressDialog progressDialog;
-    NotificationCompat.Builder builder;
+    public ProgressDialog progressDialog;
+    //MediaPlayerService service = new MediaPlayerService();
 
     /*private int page;
     public static Frag1_AoVivo newInstance(int page) {
@@ -64,7 +76,7 @@ public class Frag1_AoVivo extends Fragment {
         if(savedInstanceState != null) {
             estadoInicial = savedInstanceState.getBoolean("estadoInicial");
             if(estadoInicial) {
-                playPause(null);
+                //playPause(null);
             }
         }
         volumeSeekbar = rootView.findViewById(R.id.seekBarVolumeId);
@@ -72,16 +84,24 @@ public class Frag1_AoVivo extends Fragment {
         btnTocar.setImageResource(R.drawable.play);
         controleVolume();
 
-        FloatingActionButton fab = rootView.findViewById(R.id.fab_aovivo);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ContatosActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        streamPlay();
         return rootView;
+    }
+
+    public void setEstadoInicial(Boolean estadoInicial) {
+        this.estadoInicial = estadoInicial;
+    }
+
+    public void setEstadoImg(Boolean estadoImg) {
+        this.estadoImg = estadoImg;
+    }
+
+    public void setVerificar(Boolean verificar) {
+        this.verificar = verificar;
+    }
+
+    private void playService() {
+        Objects.requireNonNull(getActivity()).startService(new Intent(getActivity(), MediaPlayerService.class));
     }
 
     @Override
@@ -116,34 +136,58 @@ public class Frag1_AoVivo extends Fragment {
 
         //*** Cria uma notificação
     private void notificacao() {
-        builder = new NotificationCompat.Builder(getActivity(),"M_CH_ID");
-        builder.setSmallIcon(R.drawable.icon_notificacao).setContentTitle("RPfm 105.3")
-                .setContentText("Ao Vivo").setAutoCancel(true);
-        NotificationManager notifyManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        //Intent intent = new Intent(getActivity(), MainActivity.class);
+        //PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), (int) System.currentTimeMillis(), intent, 0);
+
+        Notification notificacao = new Notification.Builder(getActivity())
+                .setContentTitle("RP 'Livre' como você!")
+                .setContentText("Ao Vivo")
+                .setSmallIcon(getNotificationIcon())
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_notificacao))
+                .build();
+        //.setContentIntent(pendingIntent)
+
+        NotificationManager notifyManager = (NotificationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.NOTIFICATION_SERVICE);
+        notificacao.flags |= Notification.FLAG_AUTO_CANCEL;
         if(notifyManager != null) {
-            notifyManager.notify(1, builder.build());
+            notifyManager.notify(1, notificacao);
         }
+    }
+    private int getNotificationIcon() {
+        boolean useWhiteIcon = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP);
+        return useWhiteIcon ? R.mipmap.ic_launcher : R.mipmap.ic_launcher;
     }
 
     private void streamPlay() {
         btnTocar.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.KITKAT)
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                playPause(v);
+                playService();
+                notificacao();
+                checkIsPlaying();
+                //onProgressDialog();
+
+                /*if(mediaPlayer == null) {
+                    onProgressDialog();
+                }*/
             }
         });
     }
 
         //*** Verifica os estados das imagem play/stop
-    private void checkIsPlaying(){
+    public void checkIsPlaying(){
         if(estadoImg) {
             btnTocar.setImageResource(R.drawable.play);
         } else {
             btnTocar.setImageResource(R.drawable.stop);
         }
     }
+
+    /*
         //***Clique no botão, realiza as condições para startar e parar o streaming
-    public void playPause(View v) {
+    public void playPause() {
         if (estadoInicial) {
             mediaPlayer.pause();
             estadoInicial = false;
@@ -200,6 +244,7 @@ public class Frag1_AoVivo extends Fragment {
             }
         });
     }
+    */
 
     public void onProgressDialog() {
             //*** Defini e exibi mensagem da caixa de diálogo
@@ -211,39 +256,36 @@ public class Frag1_AoVivo extends Fragment {
         Glide.with(getActivity()).load(R.drawable.carregando).asGif().into(btnTocar);
     }
 
+    /*
     public void onPreparedListener() {
-        //*** Executar o streaming após liberado pelo prepareAsync
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public void onPrepared(MediaPlayer mPlayer) {
-                Log.i("Script", "onPrepared()");
-                    //*** Inicia o media player
-                mPlayer.start();
-                verificar = true;
-                estadoInicial = true;
-                estadoImg = false;
-                    //***Fecha título de exibição
-                progressDialog.dismiss();
-                    //*** set a imagem do botão para stop
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                Log.i("Script", "onCompletion() chamado");
+                //Stub de método gerado automaticamente
+                estadoInicial = false;
+                //***Fecha título de exibição
+                //progressDialog.dismiss();
+                //*** set a imagem do botão para stop
                 btnTocar.setImageResource(R.drawable.stop);
+                //*** Reseta a execução
+                mediaPlayer.reset();
+                //*** Para a execução
+                mediaPlayer.stop();
+                //*** Exibe mensagem para usuário
+                //Toast.makeText(MediaPlayerService.this, "Transmissão encerrada, sem conexão com internet", Toast.LENGTH_LONG).show();
+                //stop();
             }
         });
+                Log.i("Script", "onPrepared()");
+
     }
+
 
     private void stop() {
         if(mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(mediaPlayer != null) {
-            if(estadoInicial) {
-                mediaPlayer.start();
-            }
         }
     }
 
@@ -254,9 +296,10 @@ public class Frag1_AoVivo extends Fragment {
             mediaPlayer.start();
             checkIsPlaying();
         } else {
-            streamPlay();
+           streamPlay();
         }
     }
+    */
 
     @Override
     public void onDestroy() {
@@ -266,6 +309,7 @@ public class Frag1_AoVivo extends Fragment {
             mediaPlayer.release();
             mediaPlayer = null;
         }
+        //service.onDestroy();
     }
 }
 

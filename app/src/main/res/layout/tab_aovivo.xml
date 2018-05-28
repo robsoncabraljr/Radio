@@ -44,15 +44,16 @@
         android:indeterminateOnly="false"
         android:layout_marginStart="140dp" />
 
-    <android.support.design.widget.FloatingActionButton
+    <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_aovivo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="415dp"
+        android:layout_marginTop="315dp"
         android:layout_gravity="end|bottom"
         android:layout_alignParentRight="true"
+        app:backgroundTint="@color/colorPrimaryDark"
         app:srcCompat="@drawable/ic_contact_phone"
         android:layout_alignParentEnd="true"
-        tools:ignore="RelativeOverlap" />
+        tools:ignore="RelativeOverlap" /-->
 
 </RelativeLayout>

@@ -11,14 +11,14 @@
     tools:context="rpfm.projetoandroid.com.radiopopularlivre_rpfm.fragment.Frag2_Comentarios"
     android:background="@color/color_fundo">
 
-    <android.support.design.widget.FloatingActionButton
+    <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_comentarios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="415dp"
+        android:layout_marginTop="315dp"
         android:layout_gravity="right"
         app:srcCompat="@drawable/commenttext"
-        tools:ignore="RelativeOverlap,RtlHardcoded" />
+        tools:ignore="RelativeOverlap,RtlHardcoded" /-->
 
     <ListView
         android:id="@+id/lista_comentarios"

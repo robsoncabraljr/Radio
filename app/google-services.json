@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "737937821584",
+    "firebase_url": "https://radio-rp.firebaseio.com",
+    "project_id": "radio-rp",
+    "storage_bucket": "radio-rp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737937821584:android:d4c5f73e36615014",
+        "android_client_info": {
+          "package_name": "rpfm.projetoandroid.com.radiopopularlivre_rpfm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737937821584-bmbhdrgjin48mr2td3jf318g619fm8ng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rpfm.projetoandroid.com.radiopopularlivre_rpfm",
+            "certificate_hash": "fcb3dc1b1b41d9aa255b0c2c8fd7005b86d5ce3f"
+          }
+        },
+        {
+          "client_id": "737937821584-d2kg52f1na6a8utmee0tek0efs4b2p4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2reKNGIikoHvx-rCn_NmH1CpV_TUXG94"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737937821584-d2kg52f1na6a8utmee0tek0efs4b2p4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
