@@ -48,7 +48,6 @@ public class Frag1_AoVivo extends Fragment {
     private ImageView btnTocar;
     private MediaPlayer mediaPlayer;
     public ProgressDialog progressDialog;
-    //MediaPlayerService service = new MediaPlayerService();
 
     /*private int page;
     public static Frag1_AoVivo newInstance(int page) {
@@ -76,7 +75,7 @@ public class Frag1_AoVivo extends Fragment {
         if(savedInstanceState != null) {
             estadoInicial = savedInstanceState.getBoolean("estadoInicial");
             if(estadoInicial) {
-                //playPause(null);
+                playPause(null);
             }
         }
         volumeSeekbar = rootView.findViewById(R.id.seekBarVolumeId);
@@ -84,20 +83,8 @@ public class Frag1_AoVivo extends Fragment {
         btnTocar.setImageResource(R.drawable.play);
         controleVolume();
 
-        streamPlay();
+        //streamPlay();
         return rootView;
-    }
-
-    public void setEstadoInicial(Boolean estadoInicial) {
-        this.estadoInicial = estadoInicial;
-    }
-
-    public void setEstadoImg(Boolean estadoImg) {
-        this.estadoImg = estadoImg;
-    }
-
-    public void setVerificar(Boolean verificar) {
-        this.verificar = verificar;
     }
 
     private void playService() {
@@ -155,52 +142,41 @@ public class Frag1_AoVivo extends Fragment {
     }
     private int getNotificationIcon() {
         boolean useWhiteIcon = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP);
-        return useWhiteIcon ? R.mipmap.ic_launcher : R.mipmap.ic_launcher;
+        return useWhiteIcon ? R.mipmap.ic_launcher : R.drawable.icon_notificacao;
     }
 
     private void streamPlay() {
         btnTocar.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.KITKAT)
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                playService();
+                playPause(v);
                 notificacao();
-                checkIsPlaying();
-                //onProgressDialog();
-
-                /*if(mediaPlayer == null) {
-                    onProgressDialog();
-                }*/
             }
         });
     }
 
-        //*** Verifica os estados das imagem play/stop
-    public void checkIsPlaying(){
+    //*** Verifica os estados das imagem play/stop
+    private void checkIsPlaying(){
         if(estadoImg) {
             btnTocar.setImageResource(R.drawable.play);
         } else {
             btnTocar.setImageResource(R.drawable.stop);
         }
     }
-
-    /*
-        //***Clique no botão, realiza as condições para startar e parar o streaming
-    public void playPause() {
+    //***Clique no botão, realiza as condições para startar e parar o streaming
+    public void playPause(View v) {
         if (estadoInicial) {
             mediaPlayer.pause();
             estadoInicial = false;
             estadoImg = true;
         } else {
             if (mediaPlayer == null) {
-                notificacao();
                 try {
                     mediaPlayer = new MediaPlayer();
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                        //*** Passa os dados ao mediaPlayer
+                    //*** Passa os dados ao mediaPlayer
                     mediaPlayer.setDataSource("http://mixmp3.crossradio.com.br:1102/live");
-                        //*** Preparação assíncrona media player
+                    //*** Preparação assíncrona media player
                     mediaPlayer.prepareAsync();
                 } catch (IOException e) {
                     mediaPlayer.release();
@@ -228,64 +204,66 @@ public class Frag1_AoVivo extends Fragment {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 Log.i("Script", "onCompletion() chamado");
-                    //Stub de método gerado automaticamente
-                estadoInicial = false;
-                    //***Fecha título de exibição
-                progressDialog.dismiss();
-                    //*** set a imagem do botão para player
-                btnTocar.setImageResource(R.drawable.play);
-                    //*** Reseta a execução
-                mediaPlayer.reset();
-                    //*** Para a execução
-                mediaPlayer.stop();
-                    //*** Exibe mensagem para usuário
-                Toast.makeText(getContext(), "Transmissão encerrada, sem conexão com internet", Toast.LENGTH_LONG).show();
-                stop();
-            }
-        });
-    }
-    */
-
-    public void onProgressDialog() {
-            //*** Defini e exibi mensagem da caixa de diálogo
-        progressDialog = ProgressDialog.show(getContext(), "Por favor, Aguarde ...",
-                "Carregando Streaming...");
-            //*** Impede que o diálogo seja cancelado pressionando a tecla Voltar
-        progressDialog.setCancelable(true);
-            //*** Altera a imagem do botão do player
-        Glide.with(getActivity()).load(R.drawable.carregando).asGif().into(btnTocar);
-    }
-
-    /*
-    public void onPreparedListener() {
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                Log.i("Script", "onCompletion() chamado");
                 //Stub de método gerado automaticamente
                 estadoInicial = false;
                 //***Fecha título de exibição
-                //progressDialog.dismiss();
-                //*** set a imagem do botão para stop
-                btnTocar.setImageResource(R.drawable.stop);
+                progressDialog.dismiss();
+                //*** set a imagem do botão para player
+                btnTocar.setImageResource(R.drawable.play);
                 //*** Reseta a execução
                 mediaPlayer.reset();
                 //*** Para a execução
                 mediaPlayer.stop();
                 //*** Exibe mensagem para usuário
-                //Toast.makeText(MediaPlayerService.this, "Transmissão encerrada, sem conexão com internet", Toast.LENGTH_LONG).show();
-                //stop();
+                Toast.makeText(getContext(), "Transmissão encerrada, sem conexão com internet", Toast.LENGTH_LONG).show();
+                stop();
             }
         });
-                Log.i("Script", "onPrepared()");
-
     }
 
+    public void onProgressDialog() {
+        //*** Defini e exibi mensagem da caixa de diálogo
+        progressDialog = ProgressDialog.show(getContext(), "Por favor, Aguarde ...",
+                "Carregando Streaming...");
+        //*** Impede que o diálogo seja cancelado pressionando a tecla Voltar
+        progressDialog.setCancelable(true);
+        //*** Altera a imagem do botão do player
+        Glide.with(getActivity()).load(R.drawable.carregando).asGif().into(btnTocar);
+    }
+
+    public void onPreparedListener() {
+        //*** Executar o streaming após liberado pelo prepareAsync
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mPlayer) {
+                Log.i("Script", "onPrepared()");
+                //*** Inicia o media player
+                mPlayer.start();
+                verificar = true;
+                estadoInicial = true;
+                estadoImg = false;
+                //***Fecha título de exibição
+                progressDialog.dismiss();
+                //*** set a imagem do botão para stop
+                btnTocar.setImageResource(R.drawable.stop);
+            }
+        });
+    }
 
     private void stop() {
         if(mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(mediaPlayer != null) {
+            if(estadoInicial) {
+                mediaPlayer.start();
+            }
         }
     }
 
@@ -296,20 +274,18 @@ public class Frag1_AoVivo extends Fragment {
             mediaPlayer.start();
             checkIsPlaying();
         } else {
-           streamPlay();
+            streamPlay();
         }
     }
-    */
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-            //*** Verifica se está atrinuido, caso sim, anula e libera memoria.
+        //*** Verifica se está atrinuido, caso sim, anula e libera memoria.
         if(mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
         }
-        //service.onDestroy();
     }
 }
 
